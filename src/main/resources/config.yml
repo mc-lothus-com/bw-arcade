@@ -1,0 +1,27 @@
+room:
+  id: 'C-1'
+  name: 'Castelos'
+  type: SOLO
+  maxPlayers: 8
+  minPlayers: 2
+  rejoin: 60
+
+fireball:
+  explosionSize: 3
+  horizontal: 1.0
+  vertical: 0.65
+  damageSelf: 2.0
+  damageEnemy: 2.0
+  damageFall: 0.0
+
+tnt:
+  explosionSize: 3
+  horizontal: 1.0
+  vertical: 0.65
+  damageFall: 0.0
+
+protection:
+  server_generator: 3
+  team_generator: 7
+  villager: 6
+  trap: 20

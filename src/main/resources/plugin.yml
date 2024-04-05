@@ -1,0 +1,6 @@
+name: bedwars
+version: 1.0-SNAPSHOT
+main: com.lothus.engines.bedwars.Bedwars
+authors: [ gameszaum ]
+depend:
+  - core

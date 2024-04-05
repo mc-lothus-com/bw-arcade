@@ -1,0 +1,82 @@
+package com.lothus.engines.bedwars.utils;
+
+import com.lothus.engines.bedwars.Bedwars;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
+
+public class ConfigUtil implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    private File arch;
+    private FileConfiguration config;
+
+    public ConfigUtil(String pathname) {
+        try {
+            File pluginDir = new File(Bedwars.getInstance().getDataFolder(), pathname + ".yml");
+            if (!Bedwars.getInstance().getDataFolder().exists()) {
+                Bedwars.getInstance().getDataFolder().mkdirs();
+            }
+            if (!pluginDir.exists()) {
+                pluginDir.createNewFile();
+            }
+
+            arch = pluginDir;
+            config = YamlConfiguration.loadConfiguration(arch);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean contains(String c) {
+        return config.contains(c);
+    }
+
+    public void put(String key, Object value) {
+        config.set(key, value);
+    }
+
+    public Object get(String key) {
+        return config.get(key);
+    }
+
+    public int getInt(String key) {
+        return config.getInt(key);
+    }
+
+    public boolean getBoolean(String key) {
+        return config.getBoolean(key);
+    }
+
+    public String getString(String key) {
+        return config.getString(key);
+    }
+
+    public float getFloat(String key) {
+        return (float) config.getDouble(key);
+    }
+
+    public double getDouble(String key) {
+        return config.getDouble(key);
+    }
+
+    public FileConfiguration reload() {
+        return config = YamlConfiguration.loadConfiguration(arch);
+    }
+
+    public ConfigurationSection getConfigurationSection(String key) {
+        return config.getConfigurationSection(key);
+    }
+
+    public void save() {
+        try {
+            config.save(arch);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
